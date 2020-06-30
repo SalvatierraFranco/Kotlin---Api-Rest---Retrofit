@@ -1,5 +1,6 @@
 package com.example.webserviceprueba1
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ListView
@@ -24,6 +25,23 @@ class MainActivity : AppCompatActivity() {
         callGetPosts()
     }
 
+    private fun visualizarPost(postsList: List<Posts>) {
+        lv_Posts = findViewById(R.id.lv_posts)
+        lv_Posts.setOnItemClickListener { parent, view, position, id ->
+            goToPost(postsList.get(position))
+        }
+    }
+
+    private fun goToPost(unPost: Posts) {
+        var postIntent = Intent(applicationContext, PostActivity::class.java).apply {
+            putExtra("userId", unPost.userId.toString())
+            putExtra("id", unPost.id.toString())
+            putExtra("title", unPost.title)
+            putExtra("body", unPost.body)
+        }
+        startActivity(postIntent)
+    }
+
     private fun initializerApi() {
         api = RetrofitClient.retrofit.create(MyApi::class.java)
     }
@@ -40,6 +58,8 @@ class MainActivity : AppCompatActivity() {
                 var postsList: List<Posts>? = response.body()
                 adapter = PostAdapter(postsList!!)
                 lv_Posts.adapter = adapter
+
+                visualizarPost(postsList!!)
 
                 /*for (i in postsList!!.indices){
                     var cadena = ""

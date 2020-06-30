@@ -23,15 +23,15 @@ class PostAdapter: BaseAdapter {
 
         var unPost = this.auxPosts!![position]
 
-        var tv_userId = v.findViewById<TextView>(R.id.tv_userId)
-        var tv_id = v.findViewById<TextView>(R.id.tv_id)
+        //var tv_userId = v.findViewById<TextView>(R.id.tv_userId)
+        //var tv_id = v.findViewById<TextView>(R.id.tv_id)
         var tv_title = v.findViewById<TextView>(R.id.tv_title)
-        var tv_body = v.findViewById<TextView>(R.id.tv_body)
+        //var tv_body = v.findViewById<TextView>(R.id.tv_body)
 
-        tv_userId.setText(unPost.userId.toString())
-        tv_id.setText(unPost.id!!.toString())
+        //tv_userId.setText(unPost.userId.toString())
+        //tv_id.setText(unPost.id!!.toString())
         tv_title.setText(unPost.title)
-        tv_body.setText(unPost.body)
+        //tv_body.setText(unPost.body)
 
         return v
     }
